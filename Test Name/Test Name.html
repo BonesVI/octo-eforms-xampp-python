@@ -1,0 +1,166 @@
+<doctype !html>
+<html>
+<head>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="my_styles.css">
+<!-- insert title here --><title>Test Name</title></head>
+<body>
+<div class="container">
+<!-- this is a comment. This container contains everything you write-->
+<div class="page-header">
+<!-- header and explanation paragraph go here --><h1>This is a header</h1><p class="lead">This is an explanation which can be only so long, but it will not exceed one paragraph</p>	</div>
+
+<div class="row patient-info">
+<label class="col-md-8 date" >
+Date: <%date goes here%>
+</label>
+
+<label class="col-md-8 name" >
+Name: <%name goes here%>
+</label>
+<label class="col-md-8 address" >
+Address: <%address goes here%>
+</label>
+<label class="col-md-8 dob" >
+Date of Birth: <%dob goes here%>
+</label>
+<label class="col-md-8 info" >
+info: <%info goes here%>
+</label>
+<label class="col-md-8 info" >
+info: <%info goes here%>
+</label>
+<label class="col-md-8 info" >
+info: <%info goes here%>
+</label>
+</div>
+
+	<div class="row col-md-8">
+<form id='eForm' action='#' method='post'>
+<!-- questions and everything goes here. Remember to change the question number
+in the <name> attributes -->
+
+	<!-- Radio question --><div class="Radio question col-md-12"><h3 class="col-md-12">What is your favourite color?</h3><div class="Radio col-md-8">
+<div class="Radio answer col-md-8"><label><input type="Radio" name="q1" value="orng">Orange</label></div>
+<div class="Radio answer col-md-8"><label><input type="Radio" name="q1" value="red">Red</label></div>
+<div class="Radio answer col-md-8"><label><input type="Radio" name="q1" value="N/A">I don't have a favourite colour</label></div>
+<div class="Radio answer col-md-8"><label><input type="Radio" name="q1" value="blue">Blue</label></div>
+</div></div><!-- textarea question --><div class="textarea question col-md-12"><h3 class="col-md-12">What are you feeling right now?</h3><div class="textarea col-md-8">
+<textarea class="form-control" rows="4" name="q2">I can put whatever i want here because you won't be able to see it</textarea>
+</div></div><!-- diagram question --><div class="diagram question col-md-12"><h3 class="col-md-12">This is a diagram of a man</h3><div class="diagram col-md-8">
+<figure class="diagram"><img src="diagram.png" width="100%">
+<input type="checkbox" name="q3" value="button2" style="left:1000px; top:2000px;">
+<input type="checkbox" name="q3" value="button1" style="left:100px; top:200px;">
+</figure></div></div>	
+<!-- end of form goes here -->
+
+<button class='btn btn-large' type='submit' id='submit'>Submit</button><a id="bottom"></a>
+</form>
+</div>
+</div>
+
+
+
+
+<!-- Scripts go here to increase speed load time -->
+
+<script type='text/javascript' src='bootstrap.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+// this executes when the document has loaded its elements
+
+var diagrams = $('form > div.diagram');
+diagrams.each(function(){
+
+alert("whatt");
+
+// adjusts height of figure to fix how it looks
+var height = $(this).find('img').height();
+$(this).find('figure').height(height);
+});
+
+
+// modify so that the canvas is a custom div
+var canvas = $('.canvas');
+canvas.each(function() {
+// adjusts height of canvas and gives it its background image
+$(this).height($(this).find('img').height());
+var coloring = false;
+$(this).mousemove(function(e){
+if(coloring){
+var position = $(this).offset();
+var left = e.pageX - position.left;
+var top = e.pageY - position.top;
+$(this).append("<div class='dot' style='position:absolute;left:" + left + "px;top:" + top + "px;background-color:black;width:5px;height:5px;'></div>");
+return false;
+}
+
+});
+$(this).mousedown(function(e){
+coloring = true;
+return false;
+});
+$(this).mouseup(function(e){
+coloring = false;
+return false;
+});
+$(this).mouseleave(function(e){
+coloring = false;
+});
+});
+
+
+
+// trigger questions
+$('input.trigger').each(function(){
+
+var name = $(this).attr('name');
+$("input[name='" + name + "']").change(function(){
+$("input[name='" + name + "']").each(function(){
+if($(this).attr('class') == 'trigger'){
+var id = $(this).attr('id');
+var question = $('div.' + id);
+if($(this).is(':checked')){
+if(question.css('display') == 'none'){
+question.slideDown();
+}
+}
+else{
+if(question.css('display') != 'none'){
+question.slideUp();
+}
+}
+}
+});
+});
+});
+
+
+
+// submit the form and create the note
+$('#submit').click(function(){
+
+// pieces go here
+
+
+
+pieces=[PHRASE ];	var q = $('#eForm').serializeArray();
+var string = '';
+for(var i = 0; i < q.length; i++){
+// add them up
+string += pieces[i] + q[i].value;
+}
+string += pieces[pieces.length-1];
+alert(string);
+return false
+});
+});
+
+
+</script>
+</body>
+</html>
+

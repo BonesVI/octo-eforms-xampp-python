@@ -1,0 +1,10 @@
+/*refers to all children of the diagram, including the checkboxes*/
+figure.diagram *{
+	position:absolute;
+}
+
+/* canvas styling */
+.canvas{
+	border:1px solid #000000;
+	width:100%;
+}

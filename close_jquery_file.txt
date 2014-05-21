@@ -1,0 +1,17 @@
+	var q = $('#eForm').serializeArray();
+var string = '';
+for(var i = 0; i < q.length; i++){
+// add them up
+string += pieces[i] + q[i].value;
+}
+string += pieces[pieces.length-1];
+alert(string);
+return false
+});
+});
+
+
+</script>
+</body>
+</html>
+

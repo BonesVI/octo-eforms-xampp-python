@@ -1,0 +1,38 @@
+Headaches
+Headache Form
+Below are questions that you should answer regarding your headache.
+On a scale of 1 to 10, how much pain do you feel?
+radio
+1, 1 - No pain IMG:diagram.pngNUM:2HEIGHT:100
+2, 2 - Some
+3, 3 - Your mom
+4, Etc
+end
+What are you feeling right now?
+textarea
+5, Enter a description of the pain
+end
+Where is it on your skull?
+diagram
+Human_skull_diagram.jpg
+very back of skull, 380, 270
+jaw, 150, 330
+upper jaw, 250, 250
+temple, 150, 230
+back skull, 300, 125
+top left, 150, 100
+end
+Which of the following apply?
+checkbox
+asdfas, part 1
+asldkfjals, part 2
+jaksdflj, part3
+askldjfl, part 4
+endquestions
+PHRASE 1
+PHRASE 1
+PHRASE 1
+PHRASE 1
+PHRASE 1
+PHRASE 1
+PHRASE 1

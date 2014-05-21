@@ -1,0 +1,100 @@
+	
+<!-- end of form goes here -->
+
+<button class='btn btn-large' type='submit' id='submit'>Submit</button><a id="bottom"></a>
+</form>
+</div>
+</div>
+
+
+
+
+<!-- Scripts go here to increase speed load time -->
+
+<script type='text/javascript' src='bootstrap.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+// this executes when the document has loaded its elements
+
+var diagrams = $('form > div.diagram');
+diagrams.each(function(){
+
+// adjusts height of figure to fix how it looks
+var height = $(this).find('img').height();
+$(this).find('figure').height(height);
+$(this).find('img').click(function(e){
+	position = $(this).offset();
+	left = e.pageX - position.left;
+	right = e.pageY - position.top;
+	alert(left + " " + right );
+});
+
+});
+
+
+// modify so that the canvas is a custom div
+var canvas = $('.canvas');
+canvas.each(function() {
+// adjusts height of canvas and gives it its background image
+$(this).height($(this).find('img').height());
+var coloring = false;
+$(this).mousemove(function(e){
+if(coloring){
+var position = $(this).offset();
+var left = e.pageX - position.left;
+var top = e.pageY - position.top;
+$(this).append("<div class='dot' style='position:absolute;left:" + left + "px;top:" + top + "px;background-color:black;width:5px;height:5px;'></div>");
+return false;
+}
+
+});
+$(this).mousedown(function(e){
+coloring = true;
+return false;
+});
+$(this).mouseup(function(e){
+coloring = false;
+return false;
+});
+$(this).mouseleave(function(e){
+coloring = false;
+});
+});
+
+
+
+// trigger questions
+$('input.trigger').each(function(){
+
+var name = $(this).attr('name');
+$("input[name='" + name + "']").change(function(){
+$("input[name='" + name + "']").each(function(){
+if($(this).attr('class') == 'trigger'){
+var id = $(this).attr('id');
+var question = $('div.' + id);
+if($(this).is(':checked')){
+if(question.css('display') == 'none'){
+question.slideDown();
+}
+}
+else{
+if(question.css('display') != 'none'){
+question.slideUp();
+}
+}
+}
+});
+});
+});
+
+
+
+// submit the form and create the note
+$('#submit').click(function(){
+
+// pieces go here
+
+
+
