@@ -1,0 +1,124 @@
+<doctype !html>
+<html>
+<head>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="my_styles.css">
+<link rel="stylesheet" type="text/css" href="build.css">
+<!-- insert title here --><title>Headaches</title></head>
+<body>
+<div class="container">
+<!-- this is a comment. This container contains everything you write-->
+
+
+
+<div class="row col-md-8">
+	<form id='builder' action='build' method='post'>
+	<div class='questions col-md-12'>
+	STUFF
+	</div>
+	<div class='col-md-8'>
+	
+		<button id="newq">New Question</button>
+	</div>
+
+	<!-- new question -->
+	<div class="question-template template question col-md-12">
+		<h3 class="col-md-12 header clickfield"><span>Sample Header</span><input type='text' class='header'/></h3>
+		<div class='radio col-md-8'>
+			<label class='type'>Type:</label>
+			<br>
+			<div class="radio answer col-md-8"><label><input type='radio' value='radio' name='type'>Radio</label></div>
+			<div class='radio answer col-md-8'><label><input type='radio' value='checkbox' name='type'>Checkbox</label></div>
+			<div class="radio answer col-md-8"><label><input type='radio' value='diagram' name='type'>Diagram</label></div>
+
+
+			<div class='radio-template template col-md-12'>
+				<label>Name:</label><input name='name' />
+				<div class="radio answer collection">
+					<div class='body'>
+					<div class='group'>
+						<div class='cell first'>
+							Answers
+						</div>
+						<div class='cell second'>
+							Value in note
+						</div>
+						<div class='cell third'>
+							Optional Photo
+						</div>
+						<div class='cell fourth'>
+							Delete
+						</div>
+					</div>
+					<div class='group hidden'>
+						<div class='cell first'><label class='clickfield'><input type="radio" name='' /><span>Answer</span><input type='text' name='answer-text'></label></div>
+						<div class='cell second'><label>Value:</label><input name='value'/></div>
+						<div class='cell third'><input type='file' name='' accept="image/*"></div>
+						<div class='cell fourth'><button class='remove'>-</button></div>
+					</div>
+					</div>
+					<div class='foot group'>
+						<div class='cell'>
+							<button id='new-rad-answer' class='add-answer'>New Answer</button></td></tr>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='checkbox-template template col-md-12'>
+				<label>Name:<input name='name' /></label>
+				<div class="checkbox answer collection">
+					
+					<div class='body'>
+					<div class='group'>
+						<div class='cell first'>
+							Answers
+						</div>
+						<div class='cell second'>
+							Value in note
+						</div>
+						<div class='cell third'>
+							Optional Photo
+						</div>
+						<div class='cell fourth'>
+							Delete
+						</div>
+					</div>
+					<div class='group hidden'>
+						<div class='cell first'><label class='clickfield'><input type="checkbox" name='' /><span>Answer</span><input type='text' name='answer-text'></label></div>
+						<div class='cell second'><label>Value:</label><input name='value'/></div>
+						<div class='cell third'><input type='file' name='' accept="image/*"></div>
+						<div class='cell fourth'><button class='remove'>-</button></div>
+					</div>
+					</div>
+					<div class='foot group'>
+						<div class='cell'>
+							<button id='new-check-answer' class='add-answer'>New Answer</button></td></tr>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class='diagram-template template col-md-12'>
+				<input type='file' name='' accept="image/*">
+				<label>Name:<input name='name' /></label>
+				<div class="diagram answer">
+				<label>Value:<input name='value'/></label>
+				<canvas class='myCanvas' width='100%' height='auto'></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+</div>
+<!-- Scripts go here to increase speed load time -->
+
+<script type='text/javascript' src='bootstrap.min.js'></script>
+<script type="text/javascript" src='builder.js'>
+
+</script>
+</body>
+</html>
+

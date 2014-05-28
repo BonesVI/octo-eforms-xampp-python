@@ -1,6 +1,17 @@
 import os
 import shutil
 import re
+from flask import Flask
+from flask import *
+app = Flask(__name__)
+
+@app.route('/')
+def this(): 
+	return redirect(url_for('static', filename='index.html'))
+
+	
+if __name__ == '__main__':
+    app.run(debug=True)
 
 class Option:
     ''' answer options and their attributes can be set here '''
@@ -171,7 +182,7 @@ debug("----- NAME -----\n" + name
 
 
 # output file for the final product
-foutput = open(name + '\\' + name + ".html", 'w')
+foutput = open(name + '\\'+ "index.html", 'w')
 debug("----- OPENED NEW FORM -----")
 
 #next section of file will be questions

@@ -8,3 +8,16 @@ figure.diagram *{
 	border:1px solid #000000;
 	width:100%;
 }
+
+/* images in checkbox/radio button questions */
+div.checkbox-image label{
+	position:absolute;
+	left:40%;
+	top:100%;
+	font-size:0.9em;
+}
+
+div.checkbox-image{
+	margin-bottom:1%;
+
+}
