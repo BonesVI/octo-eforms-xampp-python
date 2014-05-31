@@ -1,0 +1,31 @@
+<doctype !html>
+<html>
+<head>
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="my_styles.css">
+<link rel="stylesheet" type="text/css" href="build.css">
+<!-- insert title here --><title>Headaches</title></head>
+<body>
+<div class="container">
+<!-- this is a comment. This container contains everything you write-->
+<form method='post' action='/some_action' enctype='multipart/form-data'>
+<button type='button' id='what'>Click me!</button>
+</div>
+<script type='text/javascript' src='bootstrap.min.js'></script>
+<script type="text/javascript" src='builder.js'></script>
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<script src="js/jquery.iframe-transport.js"></script>
+<script src="js/jquery.fileupload.js"></script>
+<script>
+	$('#what').click(function(){
+		var request = new XMLHttpRequest();
+		request.open("POST", "file.txt", true);
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.send("fname=Henry&lname=Ford");
+		
+		return false;
+	});
+</script>
+</body>
+</html>

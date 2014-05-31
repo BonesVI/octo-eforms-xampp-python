@@ -1,7 +1,7 @@
 ------ CURRENT WORKING DIRECTORY -----
 C:\xampp\htdocs\builder\octo-eforms-xampp-python
 ------ FILES IN DIRECTORY -----
-.git.gitattributes.gitignorebootstrap.min.cssbootstrap.min.jsbuild.cssbuild.txtbuilder.htmlbuilder.jsbuildergui.pyclose_form_jquery.txtclose_jquery_file.txtcontainer_start.txtdebug.txtdiagram.pngformbuilder.pyHeadachesheader_info.txtHuman_skull_diagram.jpginput.txtmy_styles.csspatient_info_start_form.txtstatictemplate.cssTest NameTest Name.html
+.git.gitattributes.gitignore.txtbootstrap.min.cssbootstrap.min.jsbuild.cssbuild.txtbuilder.htmlbuilder.jsbuildergui.pyclose_form_jquery.txtclose_jquery_file.txtcontainer_start.txtdebug.txtdiagram.pngformbuilder.pyHeadachesheader_info.txtHuman_skull_diagram.jpgimgindex.htmlinput.txtmy_styles.csspatient_info_start_form.txtstatictemplate.csstemplatesTest NameTest Name.htmlwhat 002.JPG
 ----- OPENING FILE -----
 ----- ADDED FILE TO LIST -----
 <doctype !html>

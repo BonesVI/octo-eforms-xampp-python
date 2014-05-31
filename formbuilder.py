@@ -1,15 +1,36 @@
 import os
+from os.path import *
 import shutil
 import re
-from flask import Flask
 from flask import *
+
 app = Flask(__name__)
 
-@app.route('/')
-def this(): 
-	return redirect(url_for('static', filename='index.html'))
 
+@app.route('/')
+def index():
+	return render_template('index.html')
 	
+@app.route('/test')
+def test():
+	return redirect(url_for('static', filename='test.html'))
+	
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+	if request.method == 'POST':
+		file = request.files.getlist('the_file[]')
+		if file:
+			for f in file:
+				filename = f.filename
+				f.save('img\\' + filename)
+			return render_template('index.html')
+
+@app.route('/img')
+def get_image():
+	name = request.args.get('name')
+	filename = 'img\\' + name;
+	return send_file(filename, mimetype='image/gif')
+		
 if __name__ == '__main__':
     app.run(debug=True)
 

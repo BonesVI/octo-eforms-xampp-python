@@ -6,8 +6,8 @@
 var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}">
-<link rel="stylesheet" type="text/css" href="my_styles.css">
-<link rel="stylesheet" type="text/css" href="build.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build.css')}}">
 <!-- insert title here --><title>Headaches</title></head>
 <body>
 <div class="container">
@@ -16,7 +16,7 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
 
 <div class="row col-md-8">
-	<form id='builder' action='/upload' method='post' enctype="multipart/form-data">
+	<form id='builder' method='post' enctype="multipart/form-data">
 	<div class='questions col-md-12'>
 	STUFF
 	</div>
@@ -104,11 +104,11 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			</div>
 
 			<div class='diagram-template template col-md-12'>
-				<input id="file" type="file" accept='image/*' name="the_file" multiple>
+				<input id="file" type="file" name="the_file[]" multiple>
 				<label>Name:<input name='name' /></label>
 				<div class="diagram answer">
 				<label>Value:<input name='value'/></label>
-				<canvas class='myCanvas' width='100%' height='auto'></canvas>
+				<canvas id='myCanvas' width='100%' height='auto'></canvas>
 				<button type='button' id='diagram-upload'>Submit</button>
 				</div>
 			</div>
@@ -119,11 +119,11 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </div>
 <!-- Scripts go here to increase speed load time -->
 
-<script type='text/javascript' src='bootstrap.min.js'></script>
-<script type="text/javascript" src='builder.js'></script>
-<script src="js/vendor/jquery.ui.widget.js"></script>
-<script src="js/jquery.iframe-transport.js"></script>
-<script src="js/jquery.fileupload.js"></script>
+<script type='text/javascript' src="{{ url_for('static', filename='bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='builder.js')}}"></script>
+<script src="{{ url_for('static', filename='js/vendor/jquery.ui.widget.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.iframe-transport.js')}}"></script>
+<script src="{{ url_for('static', filename='js/jquery.fileupload.js')}}"></script>
 <script>
 $(function () {
     $('#fileupload').fileupload({

@@ -58,11 +58,45 @@ $(document).ready(function(){
 		clone.find('.clickfield').click();
 		return false;
 	});
-	createCanvas = function()
+	createCanvas = function(filename)
 	{
-		alert('WHATUP');
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
+		var img= new Image;
+		img.src = 'img?name=' + filename;
+		img.onload = function(){
+			ctx.canvas.height = img.height;
+			ctx.canvas.width = img.width;
+			ctx.drawImage(img,10,10);
+		}
 	}
-	$(".template input[type='file']").bind('change', createCanvas);
+	
+	// alter the id here, as it will change when it becomes more dynamic
+	$('#diagram-upload').click(function(){
+		var button = $(this);
+		// Change text
+		$(this).html('Uploading...');
+		
+		// alter the file id, as it changes with how dynamic this builder
+		// becomes
+        var form_data = new FormData($("#builder")[0]);
+		var file = $('#file').val();
+        $.ajax({
+            type: 'POST',
+            url: '/upload',
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            async: false,
+            success: function(data) {
+                console.log('Success!');
+            },
+        });
+		$(this).html('Submit');
+		createCanvas(file.substring(12, file.length));
+		return false;
+	});
 	
 	
 });
