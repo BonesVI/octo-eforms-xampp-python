@@ -4,9 +4,9 @@ figure.diagram *{
 }
 
 /* canvas styling */
-.canvas{
+canvas{
 	border:1px solid #000000;
-	width:100%;
+	z-index:-99;
 }
 
 /* images in checkbox/radio button questions */

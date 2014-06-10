@@ -1,7 +1,7 @@
 <doctype !html>
 <html>
 <head>
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+<script type='text/javascript' src='{{ url_for('static', filename='jquery.js')}}'></script>
 <script type='text/javascript'>
 var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
@@ -108,7 +108,11 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				<label>Name:<input name='name' /></label>
 				<div class="diagram answer">
 				<label>Value:<input name='value'/></label>
+				<div>
+				<figure class='diagram'>
 				<canvas id='myCanvas' width='100%' height='auto'></canvas>
+				</figure>
+				</div>
 				<button type='button' id='diagram-upload'>Submit</button>
 				</div>
 			</div>
@@ -122,6 +126,7 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 <script type='text/javascript' src="{{ url_for('static', filename='bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='builder.js')}}"></script>
 <script src="{{ url_for('static', filename='js/vendor/jquery.ui.widget.js')}}"></script>
+<script type='text/javascript' src='http://code.jquery.com/ui/1.10.4/jquery-ui.js'></script>
 <script src="{{ url_for('static', filename='js/jquery.iframe-transport.js')}}"></script>
 <script src="{{ url_for('static', filename='js/jquery.fileupload.js')}}"></script>
 <script>

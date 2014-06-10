@@ -1,6 +1,49 @@
+function Check(x, y){
+	this.x = x;
+	this.y = y;
+	this.value = '';
+	this.question = 0;
+	var locations = [];
+	this.location = function()
+	{
+		var array = [];
+		array.push(this.x);
+		array.push(this.y);
+		return array;
+	}
+	
+	this.set_location = function(x, y)
+	{
+		this.x = x;
+		this.y = y;
+		return;
+	}
+	
+	this.set_value = function(value)
+	{
+		this.value = value;
+		return;
+	}
+	
+	this.set_question = function(q)
+	{
+		this.question = q;
+		return;
+	}
+	
+	this.print = function()
+	{
+		return 'Location: [' + this.x + ' ' + this.y + ']\nQuestion: ' + this.question + '\nValue: ' + this.value; 
+	}
+}
+
+
+
 $(document).ready(function(){
+	var locations = [];
 	var row_count = 0;
 	var q_count = 0;
+	var checks = [];
 	remove = function(){
 		if (confirm('Are you sure you want to delete this?'))
 		{
@@ -67,9 +110,30 @@ $(document).ready(function(){
 		img.onload = function(){
 			ctx.canvas.height = img.height;
 			ctx.canvas.width = img.width;
-			ctx.drawImage(img,10,10);
-		}
-	}
+			ctx.drawImage(img,0,0);
+		};
+		$('#myCanvas').click(function(e){
+			var left = (e.pageX - $(this).closest('figure').offset().left + 5); 
+			var top = (e.pageY - $(this).closest('figure').offset().top + 65);
+			var found = false;
+			for(var i = 0; i < checks.length; i++)
+			{
+				if(left === checks[i].x && top === checks[i].y)
+				{
+					found = true;
+				}
+			}
+			if(!found)
+			{
+				piece = new Check(left, top);
+				checks.push(piece);
+				var check = $('<input />', { type: 'checkbox', style: 'position:absolute;top:' + top + 'px;left:' + left + 'px;' , class: 'ui-widget-content'});
+				$(this).closest('figure').append(check);
+				check.drags();
+			}
+			return false;
+		});
+	};
 	
 	// alter the id here, as it will change when it becomes more dynamic
 	$('#diagram-upload').click(function(){
@@ -98,5 +162,45 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	
+	(function($) {
+    $.fn.drags = function(opt) {
+
+        opt = $.extend({handle:"",cursor:"move"}, opt);
+
+        if(opt.handle === "") {
+            var $el = this;
+        } else {
+            var $el = this.find(opt.handle);
+        }
+
+        return $el.css('cursor', opt.cursor).on("mousedown", function(e) {
+            if(opt.handle === "") {
+                var $drag = $(this).addClass('draggable');
+            } else {
+                var $drag = $(this).addClass('active-handle').parent().addClass('draggable');
+            }
+            var z_idx = $drag.css('z-index'),
+                drg_h = $drag.outerHeight(),
+                drg_w = $drag.outerWidth(),
+                pos_y = $drag.offset().top + drg_h - e.pageY,
+                pos_x = $drag.offset().left + drg_w - e.pageX;
+            $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
+                $('.draggable').offset({
+                    top:e.pageY + pos_y - drg_h,
+                    left:e.pageX + pos_x - drg_w
+                }).on("mouseup", function() {
+                    $(this).removeClass('draggable').css('z-index', z_idx);
+                });
+            });
+            e.preventDefault(); // disable selection
+        }).on("mouseup", function() {
+            if(opt.handle === "") {
+                $(this).removeClass('draggable');
+            } else {
+                $(this).removeClass('active-handle').parent().removeClass('draggable');
+            }
+        });
+
+    }
+})(jQuery);
 });
