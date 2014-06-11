@@ -4,6 +4,7 @@ function Check(x, y){
 	this.value = '';
 	this.question = 0;
 	var locations = [];
+	this.click_count = 0;
 	this.location = function()
 	{
 		var array = [];
@@ -125,11 +126,44 @@ $(document).ready(function(){
 			}
 			if(!found)
 			{
-				piece = new Check(left, top);
+				var piece = new Check(left, top);
 				checks.push(piece);
 				var check = $('<input />', { type: 'checkbox', style: 'position:absolute;top:' + top + 'px;left:' + left + 'px;' , class: 'ui-widget-content'});
 				$(this).closest('figure').append(check);
-				check.drags();
+				check.drags(); // makes draggable
+				check.val(''); // defaults the value
+				
+				// shows input box on click
+				check.click(function(){
+					left = $(this).position().left + 10;
+					top = $(this).position().top - 20;
+					value = $(this).val();
+					var input = $('<input />', { type: 'input', style: 'position:absolute;top:' + top + 'px;left:' + left + 'px;' , class: 'ui-widget-content'});
+					input.css('z-index', '100');
+					$(this).closest('figure').append(input);
+					input.focus();
+					input.val(value);
+					var check = $(this);
+					input.blur(function(){
+						check.val($(this).val());
+						$(this).remove();
+						return false;
+					});
+					input.keypress(function(e){
+						var key = e.keyCode || e.which;
+						if (key == '13'){
+							$(this).blur();
+							return false;
+						}
+						else{
+							return true;
+						}
+					});
+					
+					return false;
+				});
+				
+				check.click();
 			}
 			return false;
 		});

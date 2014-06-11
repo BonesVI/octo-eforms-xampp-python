@@ -1,6 +1,6 @@
-/*refers to all children of the diagram, including the checkboxes*/
-figure.diagram *{
-	position:absolute;
+html body
+{
+	z-index:-1000;
 }
 
 /* canvas styling */
