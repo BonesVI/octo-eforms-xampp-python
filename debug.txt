@@ -1,7 +1,7 @@
 ------ CURRENT WORKING DIRECTORY -----
 C:\xampp\htdocs\builder\octo-eforms-xampp-python
 ------ FILES IN DIRECTORY -----
-.git.gitattributes.gitignore.txtbootstrap.min.cssbootstrap.min.jsbuild.cssbuild.txtbuilder.htmlbuilder.jsbuildergui.pyclose_form_jquery.txtclose_jquery_file.txtcontainer_start.txtdebug.txtdiagram.pngformbuilder.pyHeadachesheader_info.txtHuman_skull_diagram.jpgimgindex.htmlinput.txtmy_styles.csspatient_info_start_form.txtstatictemplate.csstemplatesTest NameTest Name.htmlwhat 002.JPG
+.git.gitattributes.gitignore.txtbootstrap.min.cssbootstrap.min.jsbuild.cssbuild.txtbuilder.htmlbuilder.jsbuildergui.pyclose_form_jquery.txtclose_jquery_file.txtcontainer_start.txtdebug.txtdiagram.pngformbuilder.pyHeadachesHeadaches -- TITLEheader_info.txtHuman_skull_diagram.jpgimgindex.htmlinput.txtmy_styles.csspatient_info_start_form.txtstatictemplate.csstemplatesTest NameTest Name.htmlwhat 002.JPG
 ----- OPENING FILE -----
 ----- ADDED FILE TO LIST -----
 <doctype !html>
@@ -184,37 +184,34 @@ return false
 ----- CLOSED FILE -----
 ----- READING INPUTS -----
 ----- NAME -----
-Headaches
+Headaches -- TITLE
 ----- HEADER -----
-Headache Form
+Headache Form -- FORM HEADER
 ----- EXPLANATION -----
-Below are questions that you should answer regarding your headache.
+Below are questions that you should answer regarding your headache. -- DESCRIPTION
 ----- OPENED NEW FORM -----
 ----- NEW QUESTION -----
-On a scale of 1 to 10, how much pain do you feel?
-radio
-1, 1 - No pain IMG:diagram.pngNUM:2HEIGHT:100
-2, 2 - Some
+On a scale of 1 to 10, how much pain do you feel? -- QUESTIONS BEGIN
+radio -- TYPE
+1, 1 - No pain IMG:diagram.pngNUM:2HEIGHT:100 -- VALUE, WORDS, IMG:SRC NUM:?? HEIGHT: height in px
+2, 2 - Some -- VALUE, WORDS
 3, 3 - Your mom
 4, Etc
------ ADDED QUESTION -----
------ NEW QUESTION -----
-What are you feeling right now?
-textarea
-5, Enter a description of the pain
------ ADDED QUESTION -----
------ NEW QUESTION -----
-Where is it on your skull?
-diagram
-Human_skull_diagram.jpg
-very back of skull, 380, 270
+end -- END OF QUESTION
+What are you feeling right now? -- QUESTION
+textarea -- TYPE
+5, Enter a description of the pain -- VALUE (not used), TIP
+end -- END
+Where is it on your skull? -- QUESTION
+diagram -- DIAGRAM
+Human_skull_diagram.jpg -- IMG
+very back of skull, 380, 270 -- VALUE, x, y
 jaw, 150, 330
 upper jaw, 250, 250
 temple, 150, 230
 back skull, 300, 125
 top left, 150, 100
------ ADDED QUESTION -----
------ NEW QUESTION -----
+end -- END
 Which of the following apply?
 checkbox
 asdfas, part 1
@@ -224,7 +221,7 @@ askldjfl, part 4
 ----- ADDED QUESTION -----
 ----- NO FURTHER QUESTIONS -----
 ----- COLLECTING PHRASES -----
-PHRASE 1
+PHRASE 1 -- DIFFERENT PHRASES
 PHRASE 1
 PHRASE 1
 PHRASE 1
@@ -234,24 +231,47 @@ PHRASE
 ----- NO FURTHER PHRASES -----
 ----- CLOSED INPUT FILE -----
 ----- NUMBER OF QUESTIONS -----
-4
+1
 
 ----- OPTIONS -----
-1, 1 - No pain IMG:diagram.pngNUM:2HEIGHT:100, 45
-2, 2 - Some, 11
+1, 1 - No pain IMG:diagram.pngNUM:2HEIGHT:100 -- VALUE, WORDS, IMG:SRC NUM:?? HEIGHT: height in px, 98
+2, 2 - Some -- VALUE, WORDS, 27
 3, 3 - Your mom, 15
 4, Etc, 6
+end -- END OF QUESTION, 22
+What are you feeling right now? -- QUESTION, 43
+textarea -- TYPE, 16
+5, Enter a description of the pain -- VALUE (not used), TIP, 59
+end -- END, 10
+Where is it on your skull? -- QUESTION, 38
+diagram -- DIAGRAM, 18
+Human_skull_diagram.jpg -- IMG, 30
+very back of skull, 380, 270 -- VALUE, x, y, 43
+jaw, 150, 330, 13
+upper jaw, 250, 250, 19
+temple, 150, 230, 16
+back skull, 300, 125, 20
+top left, 150, 100, 18
+end -- END, 10
+Which of the following apply?, 29
+checkbox, 8
+asdfas, part 1, 14
+asldkfjals, part 2, 18
+jaksdflj, part3, 15
+askldjfl, part 4, 16
 ----- CREATED QUESTION -----
-Type: radio
-Parse values: 11 - No pain IMG:diagram.pngNUM:2HEIGHT:100
-Number of options: 2
+Type: radio -- TYPE
+Parse values: 11 - No pain IMG:diagram.pngNUM:2HEIGHT:100 -- VALUEWORDSIMG:SRC NUM:?? HEIGHT: height in px
+Number of options: 4
+MORE OPTIONS
+COORDINATES BEING ENTERED: 1, 1 - No pain IMG:diagram.pngNUM:2HEIGHT:100 -- VALUE, WORDS
 ---IMAGE LOCATION---
 diagram.png
-NAME: 
 ----- ADDED OPTION -----
-Parse values: 22 - Some
-Number of options: 2
-NAME: 
+Parse values: 22 - Some -- VALUEWORDS
+Number of options: 3
+MORE OPTIONS
+COORDINATES BEING ENTERED: 2, 2 - Some -- VALUE, WORDS
 ----- ADDED OPTION -----
 Parse values: 33 - Your mom
 Number of options: 2
@@ -261,175 +281,5 @@ Parse values: 4Etc
 Number of options: 2
 NAME: 
 ----- ADDED OPTION -----
------ ADDED QUESTION -----
------ OPTIONS -----
-5, Enter a description of the pain, 34
------ CREATED QUESTION -----
-Type: textarea
-Parse values: 5Enter a description of the pain
-Number of options: 2
-NAME: 
------ ADDED OPTION -----
------ ADDED QUESTION -----
------ DIAGRAM -----
------ CREATED QUESTION -----
-Type: diagram
-Parse values: very back of skull380270
-Number of options: 3
-MORE OPTIONS
-COORDINATES BEING ENTERED: very back of skull, 380, 270
------ ADDED OPTION -----
-Parse values: jaw150330
-Number of options: 3
-MORE OPTIONS
-COORDINATES BEING ENTERED: jaw, 150, 330
------ ADDED OPTION -----
-Parse values: upper jaw250250
-Number of options: 3
-MORE OPTIONS
-COORDINATES BEING ENTERED: upper jaw, 250, 250
------ ADDED OPTION -----
-Parse values: temple150230
-Number of options: 3
-MORE OPTIONS
-COORDINATES BEING ENTERED: temple, 150, 230
------ ADDED OPTION -----
-Parse values: back skull300125
-Number of options: 3
-MORE OPTIONS
-COORDINATES BEING ENTERED: back skull, 300, 125
------ ADDED OPTION -----
-Parse values: top left150100
-Number of options: 3
-MORE OPTIONS
-COORDINATES BEING ENTERED: top left, 150, 100
------ ADDED OPTION -----
------ ADDED QUESTION -----
------ OPTIONS -----
-asdfas, part 1, 14
-asldkfjals, part 2, 18
-jaksdflj, part3, 15
-askldjfl, part 4, 16
------ CREATED QUESTION -----
-Type: checkbox
-Parse values: asdfaspart 1
-Number of options: 2
-NAME: 
------ ADDED OPTION -----
-Parse values: asldkfjalspart 2
-Number of options: 2
-NAME: 
------ ADDED OPTION -----
-Parse values: jaksdfljpart3
-Number of options: 2
-NAME: 
------ ADDED OPTION -----
-Parse values: askldjflpart 4
-Number of options: 2
-NAME: 
------ ADDED OPTION -----
------ ADDED QUESTION -----
-Number of options: 4
------ QUESTION STRING -----
-Number of options: 4
-<!-- radio question --><div class="radio question col-md-12"><h3 class="col-md-12">On a scale of 1 to 10, how much pain do you feel?</h3><div class="radio col-md-8">
-<div class="radio answer col-md-8"><label><input type="radio" name="q1" value="1">1 - No pain<br/><img src='diagram.png' class='col-md-6' height='px'></label></div>
-<div class="radio answer col-md-8"><label><input type="radio" name="q1" value="2">2 - Some</label></div>
-<div class="radio answer col-md-8"><label><input type="radio" name="q1" value="3">3 - Your mom</label></div>
-<div class="radio answer col-md-8"><label><input type="radio" name="q1" value="4">Etc</label></div>
-</div></div>
+Parse values: end -- END OF QUESTION
 Number of options: 1
------ QUESTION STRING -----
-Number of options: 1
-<!-- textarea question --><div class="textarea question col-md-12"><h3 class="col-md-12">What are you feeling right now?</h3><div class="textarea col-md-8">
-<textarea class="form-control" rows="5" name="q2">Enter a description of the pain</textarea>
-</div></div>
-Number of options: 6
-CHECKBOX LOCATION:
-
-380
-270
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-150
-330
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-250
-250
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-150
-230
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-300
-125
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-150
-100
------ PICTURE COPY SUCCESSFUL -----
------ QUESTION STRING -----
-Number of options: 6
-CHECKBOX LOCATION:
-
-380
-270
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-150
-330
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-250
-250
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-150
-230
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-300
-125
------ PICTURE COPY SUCCESSFUL -----
-CHECKBOX LOCATION:
-
-150
-100
------ PICTURE COPY SUCCESSFUL -----
-<!-- diagram question --><div class="diagram question col-md-12"><h3 class="col-md-12">Where is it on your skull?</h3><div class="diagram col-md-8">
-<figure class="diagram"><img src="Human_skull_diagram.jpg" width="100%">
-<input type="checkbox" name="q3" value="very back of skull" style="left:380px; top:270px;">
-<input type="checkbox" name="q3" value="jaw" style="left:150px; top:330px;">
-<input type="checkbox" name="q3" value="upper jaw" style="left:250px; top:250px;">
-<input type="checkbox" name="q3" value="temple" style="left:150px; top:230px;">
-<input type="checkbox" name="q3" value="back skull" style="left:300px; top:125px;">
-<input type="checkbox" name="q3" value="top left" style="left:150px; top:100px;">
-</figure></div></div>
-Number of options: 4
------ QUESTION STRING -----
-Number of options: 4
-<!-- checkbox question --><div class="checkbox question col-md-12"><h3 class="col-md-12">Which of the following apply?</h3><div class="checkbox col-md-8">
-<div class="checkbox answer col-md-8"><label><input type="checkbox" name="q4" value="asdfas">part 1</label></div>
-<div class="checkbox answer col-md-8"><label><input type="checkbox" name="q4" value="asldkfjals">part 2</label></div>
-<div class="checkbox answer col-md-8"><label><input type="checkbox" name="q4" value="jaksdflj">part3</label></div>
-<div class="checkbox answer col-md-8"><label><input type="checkbox" name="q4" value="askldjfl">part 4</label></div>
-</div></div>
------ PIECES -----
-"PHRASE 1",
-"PHRASE 1",
-"PHRASE 1",
-"PHRASE 1",
-"PHRASE 1",
-"PHRASE 1",
-"PHRASE "

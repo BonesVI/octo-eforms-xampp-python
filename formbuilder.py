@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
 	return render_template('index.html')
-
+	
 @app.route('/test')
 def test():
 	return redirect(url_for('static', filename='test.html'))
