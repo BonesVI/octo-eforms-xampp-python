@@ -16,7 +16,6 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 <div class="container">
 <!-- this is a comment. This container contains everything you write-->
 
-<<<<<<< HEAD
 <h1 class='clickfield'><span>Form Title Here</span><input type='text' class='title' hidden/></h1>
 <p class='clickfield'><span>Form description here.</span><input type='text' class='description' hidden/></p>
 
@@ -25,9 +24,9 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 		<button id="newq">New Question</button>
 </div>
 
-<ul id='questions'>
-	<li class='ui-state-default'>
-		<form class='col-md-12 builder template hidden' method='post' enctype="multipart/form-data" id='builder-0'>	
+<div id='questions'>
+	<div class='ui-state-default col-md-12'>
+		<form class='builder template hidden' method='post' enctype="multipart/form-data" id='builder-0'>	
 
 	<!-- new question -->
 	<div class="question-template template question col-md-12">
@@ -39,30 +38,6 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 			<div class='radio answer col-md-8'><label><input type='radio' value='checkbox' class='show-chk select' name='type'>Checkbox</label></div>
 			<div class="radio answer col-md-8"><label><input type='radio' value='textarea' class='show-text select' name='type'>Textarea</label></div>
 			<div class="radio answer col-md-8"><label><input type='radio' value='diagram' class='show-diag select' name='type'>Diagram</label></div>
-=======
-
-
-<div class="row col-md-8">
-	<form id='builder' method='post' enctype="multipart/form-data">
-	<div class='questions col-md-12'>
-	STUFF
-	</div>
-	<div class='col-md-8'>
-	
-		<button id="newq">New Question</button>
-	</div>
-
-	<!-- new question -->
-	<div class="question-template template question col-md-12">
-		<h3 class="col-md-12 header clickfield"><span>Sample Header</span><input type='text' class='header'/></h3>
-		<div class='radio col-md-8'>
-			<label class='type'>Type:</label>
-			<br>
-			<div class="radio answer col-md-8"><label><input type='radio' value='radio' name='type'>Radio</label></div>
-			<div class='radio answer col-md-8'><label><input type='radio' value='checkbox' name='type'>Checkbox</label></div>
-			<div class="radio answer col-md-8"><label><input type='radio' value='diagram' name='type'>Diagram</label></div>
->>>>>>> parent of 4dc97a3... Sortable + new questions
-
 
 			<div class='radio-template template col-md-12'>
 				<label>Name:</label><input name='name' />
@@ -130,7 +105,7 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 					</div>
 				</div>
 			</div>
-<<<<<<< HEAD
+
 			
 			<div class='textarea-template template col-md-12 hidden'>
 			
@@ -138,34 +113,29 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				<textarea name="textarea" width='100%'></textarea>
 			</div>
 			
-			<div class='diagram-template template col-md-12 hidden'>
+			<div class='diagram-template template col-md-12'>
 				<input class="file" type="file" name="the_file[]" multiple>
 				<label>Pre-answer phrase:<input name='name' /></label>
-=======
-
-			<div class='diagram-template template col-md-12'>
-				<input id="file" type="file" name="the_file[]" multiple>
-				<label>Name:<input name='name' /></label>
->>>>>>> parent of 4dc97a3... Sortable + new questions
 				<div class="diagram answer">
 				<label>Value:<input name='value'/></label>
 				<div>
 				<figure class='diagram'>
-				<canvas id='myCanvas' width='100%' height='auto'></canvas>
-				</figure>
+				<canvas class='myCanvas' height='auto'></canvas>
+				<div class='sidebar'>
+				<div class='template check-0 hidden clickfield' >
+					<input type='checkbox' /><span class='value'>VALUE</span><input type='text' hidden /><button class='remove-check'>-</button>
 				</div>
-				<button type='button' id='diagram-upload'>Submit</button>
+				</div>
+				</figure>
+				
+				</div>
+				<button type='button' class='diagram-upload'>Upload Photo</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	</form>
-<<<<<<< HEAD
-	</li>
-</ul>
-=======
-</div>
->>>>>>> parent of 4dc97a3... Sortable + new questions
+	</div>
 </div>
 <!-- Scripts go here to increase speed load time -->
 

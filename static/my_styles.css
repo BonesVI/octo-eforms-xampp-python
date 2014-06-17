@@ -2,8 +2,6 @@ html body
 {
 	z-index:-1000;
 }
-
-<<<<<<< HEAD
 .template{
 	visibility:none;
 }
@@ -17,13 +15,19 @@ span{
 	border: 1px solid black;
 }
 
-=======
->>>>>>> parent of 4dc97a3... Sortable + new questions
 /* canvas styling */
 canvas{
 	border:1px solid #000000;
 	z-index:-99;
+	width:75%;
+	
 }
+.sidebar{
+	width:20%;
+	float:right;
+	height:auto;
+}
+
 
 /* images in checkbox/radio button questions */
 div.checkbox-image label{

@@ -43,7 +43,7 @@ $(document).ready(function(){
 	var row_count = 0;
 	var q_count = 0;
 	var checks = [];
-<<<<<<< HEAD
+	var check_count = 0;
 
 	$('form .radio-template').hide();
 	$('form .checkbox-template').hide();
@@ -66,15 +66,9 @@ $(document).ready(function(){
 		clone.find('form').removeClass('template');
 		q_count = q_count + 1;
 		clone.find('form').attr('id', 'builder-' + q_count);
-		clone.sortable();
-		clone.disableSelection();
-		refresh();
+		refresh(q_count + '');
 	});
 	
-	
-	
-=======
->>>>>>> parent of 4dc97a3... Sortable + new questions
 	remove = function(){
 		if (confirm('Are you sure you want to delete this?'))
 		{
@@ -100,22 +94,16 @@ $(document).ready(function(){
 		});
 		// takes the value from the text box and copies it to the label
 		input.blur(function(){
-				$(this).hide();
-				var value = $(this).val();
-				var span = $(this).parent('.clickfield').find('span');
-				span.text(value);
-				span.show();
-				var temp = jQuery.data($(this).closest('.group'), 'row', row_count);
-				rows = $(this).closest('.body').find('.group');
-				for(var i = 0; i < rows.length; i++)
-				{
-					if(rows[i].is(':visible') && jQuery.data(rows[i], 'row', 'row_count') > temp)
-					{
-						rows[i].find('.clickfield').click();
-						return false;
-					}
-				}
-				$(this).closest('.collection').find('.add-answer').focus();
+			$(this).hide();
+			var value = $(this).val();
+			var span = $(this).closest('.clickfield').find('span');
+			var cl = span.closest('.clickfield').attr('class');
+			if(cl.indexOf('check-') >= 0)
+			{
+				span.closest('figure').find('.' + cl.split(' ')[0]).val(value);
+			}
+			span.html(value);
+			span.show();
 			return false;
 		});
 		return false;}
@@ -132,10 +120,10 @@ $(document).ready(function(){
 		clone.find('.clickfield').click();
 		return false;
 	});
-	createCanvas = function(filename)
+	createCanvas = function(filename, id)
 	{
-		var c=document.getElementById("myCanvas");
-		var ctx=c.getContext("2d");
+		var c = $(".builder#" + id).find('.myCanvas');
+ 		var ctx= c[0].getContext('2d');
 		var img= new Image;
 		img.src = 'img?name=' + filename;
 		img.onload = function(){
@@ -143,7 +131,7 @@ $(document).ready(function(){
 			ctx.canvas.width = img.width;
 			ctx.drawImage(img,0,0);
 		};
-		$('#myCanvas').click(function(e){
+		$('.myCanvas').click(function(e){
 			var left = (e.pageX - $(this).closest('figure').offset().left + 5); 
 			var top = (e.pageY - $(this).closest('figure').offset().top + 65);
 			var found = false;
@@ -158,7 +146,8 @@ $(document).ready(function(){
 			{
 				var piece = new Check(left, top);
 				checks.push(piece);
-				var check = $('<input />', { type: 'checkbox', style: 'position:absolute;top:' + top + 'px;left:' + left + 'px;' , class: 'ui-widget-content'});
+				check_count = check_count + 1;
+				var check = $('<input />', { type: 'checkbox', style: 'position:absolute;top:' + top + 'px;left:' + left + 'px;' , class: 'check-' + check_count});
 				$(this).closest('figure').append(check);
 				check.drags(); // makes draggable
 				check.val(''); // defaults the value
@@ -176,6 +165,7 @@ $(document).ready(function(){
 					var check = $(this);
 					input.blur(function(){
 						check.val($(this).val());
+						check.closest('figure').find('.sidebar .' + check.attr('class') + ' .value').html($(this).val());
 						$(this).remove();
 						return false;
 					});
@@ -192,18 +182,30 @@ $(document).ready(function(){
 					
 					return false;
 				});
-				
+				var sidebar = $(this).closest('figure').find('.sidebar');
+				var clone_check = sidebar.find('.template').clone();
+				var cl = 'check-' + check_count
+				clone_check.attr('class', cl + ' clickfield');
+				clone_check.click(clickme);
+				clone_check.find('.remove-check').click(function(){
+					clone_check.closest('figure').find('.' + cl).remove();
+					clone_check.remove();
+					
+					return false;
+				});
+				sidebar.append(clone_check);
 				check.click();
 			}
 			return false;
 		});
 	};
-<<<<<<< HEAD
-	refresh = function(){
-		$('input.select').bind('click', function(){
+
+	refresh = function(id){
+		var form = $('#builder-'+id);
+		form.find('input.select').bind('click', function(){
 			$('input[name="' + $(this).attr('name') + '"]').not($(this)).trigger('change');
 		});
-		$('.show-rad').change(function(){
+		form.find('.show-rad').change(function(){
 			if($(this).is(':checked'))
 			{
 				$(this).closest('form').find('.radio-template').show();
@@ -213,7 +215,7 @@ $(document).ready(function(){
 				$(this).closest('form').find('.radio-template').hide();
 			}
 		});
-		$('.show-chk').change(function(){
+		form.find('.show-chk').change(function(){
 			if($(this).is(':checked'))
 			{
 				$(this).closest('form').find('.checkbox-template').show();
@@ -223,7 +225,7 @@ $(document).ready(function(){
 				$(this).closest('form').find('.checkbox-template').hide();
 			}
 		});
-		$('.show-text').change(function(){
+		form.find('.show-text').change(function(){
 			if($(this).is(':checked'))
 			{
 				$(this).closest('form').find('.textarea-template').show();
@@ -233,7 +235,7 @@ $(document).ready(function(){
 				$(this).closest('form').find('.textarea-template').hide();
 			}
 		});
-		$('.show-diag').change(function(){
+		form.find('.show-diag').change(function(){
 			if($(this).is(':checked'))
 			{
 				$('form .diagram-template').removeClass('hidden');
@@ -245,7 +247,7 @@ $(document).ready(function(){
 			}
 		});
 		// alter the id here, as it will change when it becomes more dynamic
-		$('.diagram-upload').click(function(){
+		form.find('.diagram-upload').click(function(){
 			var button = $(this);
 			// Change text
 			$(this).html('Uploading...');
@@ -270,51 +272,20 @@ $(document).ready(function(){
 			createCanvas(file.substring(12, file.length), $(this).closest('.builder').attr('id'));
 			return false;
 		});
-		$('.clickfield').click(clickme);
-		$('.add-answer').click(function(){
+		form.find('.clickfield').click(clickme);
+		form.find('.add-answer').click(function(){
 			var answer = $(this).closest('.collection').find('.hidden');
 			var field = answer.closest('.body');
-			var clone = answer.clone().attr('class', 'group');
-			field.append(clone);
+			var clone = answer.clone();
+			clone.attr('class', 'group');
+			field.append(clone.first());
 			clone.find('.clickfield').bind('click', clickme);
-			jQuery.data(clone.closest('.group'), 'row', row_count);
 			clone.find('.remove').click(remove);
-			row_count = row_count + 1;
 			clone.find('.clickfield').click();
 			return false;
 		});
 	};
-	refresh();	
-=======
-	
-	// alter the id here, as it will change when it becomes more dynamic
-	$('#diagram-upload').click(function(){
-		var button = $(this);
-		// Change text
-		$(this).html('Uploading...');
-		
-		// alter the file id, as it changes with how dynamic this builder
-		// becomes
-        var form_data = new FormData($("#builder")[0]);
-		var file = $('#file').val();
-        $.ajax({
-            type: 'POST',
-            url: '/upload',
-            data: form_data,
-            contentType: false,
-            cache: false,
-            processData: false,
-            async: false,
-            success: function(data) {
-                console.log('Success!');
-            },
-        });
-		$(this).html('Submit');
-		createCanvas(file.substring(12, file.length));
-		return false;
-	});
-	
->>>>>>> parent of 4dc97a3... Sortable + new questions
+	refresh('0');	
 	(function($) {
     $.fn.drags = function(opt) {
 
