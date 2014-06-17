@@ -38,23 +38,26 @@ function Check(x, y){
 	}
 }
 
-
-
 $(document).ready(function(){
-
-	
 	var locations = [];
 	var row_count = 0;
 	var q_count = 0;
 	var checks = [];
-	
-	
+<<<<<<< HEAD
+
 	$('form .radio-template').hide();
 	$('form .checkbox-template').hide();
+	$('form .textarea-template').hide();
 	$('form .diagram-template').hide();
 	$('form .radio-template').removeClass('hidden');
 	$('form .checkbox-template').removeClass('hidden');
+	$('form .textarea-template').removeClass('hidden');
 	$('form .diagram-template').removeClass('hidden');
+	
+	getNumber = function(id){
+		var num = id.substring(8, id.length);
+		return num;
+	};
 	
 	$('#newq').click(function(){
 		var clone = $('.builder.template').closest('.ui-state-default').clone();
@@ -63,86 +66,15 @@ $(document).ready(function(){
 		clone.find('form').removeClass('template');
 		q_count = q_count + 1;
 		clone.find('form').attr('id', 'builder-' + q_count);
-		clone.find('.number').html(q_count + '. ');
-		$('#questions').sortable({placeholder: "ui-state-highlight", delay: 250});
-		$('#questions').disableSelection();
+		clone.sortable();
+		clone.disableSelection();
 		refresh();
 	});
 	
-	refresh = function(){
-		$('input.select').bind('click', function(){
-			$('input[name="' + $(this).attr('name') + '"]').not($(this)).trigger('change');
-		});
-		$('.show-rad').change(function(){
-			if($(this).is(':checked'))
-			{
-				$(this).closest('form').find('.radio-template').show();
-			}
-			else
-			{
-				$(this).closest('form').find('.radio-template').hide();
-			}
-		});
-		$('.show-chk').change(function(){
-			if($(this).is(':checked'))
-			{
-				$(this).closest('form').find('.checkbox-template').show();
-			}
-			else
-			{
-				$(this).closest('form').find('.checkbox-template').hide();
-			}
-		});
-		$('.show-diag').change(function(){
-			if($(this).is(':checked'))
-			{
-				$(this).closest('form').find('.diagram-template').show();
-			}
-			else
-			{
-				$(this).closest('form').find('.diagram-template').hide();
-			}
-		});
-		// alter the id here, as it will change when it becomes more dynamic
-		$('.diagram-upload').click(function(){
-			var button = $(this);
-			// Change text
-			$(this).html('Uploading...');
-			
-			// alter the file id, as it changes with how dynamic this builder
-			// becomes
-			var form_data = new FormData($(this).closest(".builder")[0]);
-			var file = $(this).closest('.builder').find('.file').val();
-			$.ajax({
-				type: 'POST',
-				url: '/upload',
-				data: form_data,
-				contentType: false,
-				cache: false,
-				processData: false,
-				async: false,
-				success: function(data) {
-					console.log('Success!');
-				},
-			});
-			$(this).html('Upload Photo');
-			createCanvas(file.substring(12, file.length), $(this).closest('.builder').attr('id'));
-			return false;
-		});
-		$('.clickfield').click(clickme);
-		$('.add-answer').click(function(){
-			var answer = $(this).closest('.collection').find('.hidden');
-			var field = answer.closest('.body');
-			var clone = answer.clone().attr('class', 'group');
-			field.append(clone);
-			clone.find('.clickfield').bind('click', clickme);
-			jQuery.data(clone.closest('.group'), 'row', row_count);
-			clone.find('.remove').click(remove);
-			row_count = row_count + 1;
-			clone.find('.clickfield').click();
-			return false;
-		});
-	};
+	
+	
+=======
+>>>>>>> parent of 4dc97a3... Sortable + new questions
 	remove = function(){
 		if (confirm('Are you sure you want to delete this?'))
 		{
@@ -187,11 +119,23 @@ $(document).ready(function(){
 			return false;
 		});
 		return false;}
-		
-	createCanvas = function(filename, id)
+	$('.clickfield').click(clickme);
+	$('.add-answer').click(function(){
+		var answer = $(this).closest('.collection').find('.hidden');
+		var field = answer.closest('.body');
+		var clone = answer.clone().attr('class', 'group');
+		field.append(clone);
+		clone.find('.clickfield').bind('click', clickme);
+		jQuery.data(clone.closest('.group'), 'row', row_count);
+		clone.find('.remove').click(remove);
+		row_count = row_count + 1;
+		clone.find('.clickfield').click();
+		return false;
+	});
+	createCanvas = function(filename)
 	{
-		var c = $(".builder#" + id).find('.myCanvas');
-		var ctx= c[0].getContext('2d');
+		var c=document.getElementById("myCanvas");
+		var ctx=c.getContext("2d");
 		var img= new Image;
 		img.src = 'img?name=' + filename;
 		img.onload = function(){
@@ -199,7 +143,7 @@ $(document).ready(function(){
 			ctx.canvas.width = img.width;
 			ctx.drawImage(img,0,0);
 		};
-		$('.myCanvas').click(function(e){
+		$('#myCanvas').click(function(e){
 			var left = (e.pageX - $(this).closest('figure').offset().left + 5); 
 			var top = (e.pageY - $(this).closest('figure').offset().top + 65);
 			var found = false;
@@ -254,7 +198,123 @@ $(document).ready(function(){
 			return false;
 		});
 	};
+<<<<<<< HEAD
+	refresh = function(){
+		$('input.select').bind('click', function(){
+			$('input[name="' + $(this).attr('name') + '"]').not($(this)).trigger('change');
+		});
+		$('.show-rad').change(function(){
+			if($(this).is(':checked'))
+			{
+				$(this).closest('form').find('.radio-template').show();
+			}
+			else
+			{
+				$(this).closest('form').find('.radio-template').hide();
+			}
+		});
+		$('.show-chk').change(function(){
+			if($(this).is(':checked'))
+			{
+				$(this).closest('form').find('.checkbox-template').show();
+			}
+			else
+			{
+				$(this).closest('form').find('.checkbox-template').hide();
+			}
+		});
+		$('.show-text').change(function(){
+			if($(this).is(':checked'))
+			{
+				$(this).closest('form').find('.textarea-template').show();
+			}
+			else
+			{
+				$(this).closest('form').find('.textarea-template').hide();
+			}
+		});
+		$('.show-diag').change(function(){
+			if($(this).is(':checked'))
+			{
+				$('form .diagram-template').removeClass('hidden');
+				$(this).closest('form').find('.diagram-template').show();
+			}
+			else
+			{
+				$(this).closest('form').find('.diagram-template').hide();
+			}
+		});
+		// alter the id here, as it will change when it becomes more dynamic
+		$('.diagram-upload').click(function(){
+			var button = $(this);
+			// Change text
+			$(this).html('Uploading...');
+			
+			// alter the file id, as it changes with how dynamic this builder
+			// becomes
+			var form_data = new FormData($(this).closest(".builder")[0]);
+			var file = $(this).closest('.builder').find('.file').val();
+			$.ajax({
+				type: 'POST',
+				url: '/upload',
+				data: form_data,
+				contentType: false,
+				cache: false,
+				processData: false,
+				async: false,
+				success: function(data) {
+					console.log('Success!');
+				},
+			});
+			$(this).html('Upload Photo');
+			createCanvas(file.substring(12, file.length), $(this).closest('.builder').attr('id'));
+			return false;
+		});
+		$('.clickfield').click(clickme);
+		$('.add-answer').click(function(){
+			var answer = $(this).closest('.collection').find('.hidden');
+			var field = answer.closest('.body');
+			var clone = answer.clone().attr('class', 'group');
+			field.append(clone);
+			clone.find('.clickfield').bind('click', clickme);
+			jQuery.data(clone.closest('.group'), 'row', row_count);
+			clone.find('.remove').click(remove);
+			row_count = row_count + 1;
+			clone.find('.clickfield').click();
+			return false;
+		});
+	};
+	refresh();	
+=======
+	
+	// alter the id here, as it will change when it becomes more dynamic
+	$('#diagram-upload').click(function(){
+		var button = $(this);
+		// Change text
+		$(this).html('Uploading...');
 		
+		// alter the file id, as it changes with how dynamic this builder
+		// becomes
+        var form_data = new FormData($("#builder")[0]);
+		var file = $('#file').val();
+        $.ajax({
+            type: 'POST',
+            url: '/upload',
+            data: form_data,
+            contentType: false,
+            cache: false,
+            processData: false,
+            async: false,
+            success: function(data) {
+                console.log('Success!');
+            },
+        });
+		$(this).html('Submit');
+		createCanvas(file.substring(12, file.length));
+		return false;
+	});
+	
+>>>>>>> parent of 4dc97a3... Sortable + new questions
 	(function($) {
     $.fn.drags = function(opt) {
 

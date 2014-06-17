@@ -3,19 +3,26 @@ html body
 	z-index:-1000;
 }
 
+<<<<<<< HEAD
 .template{
 	visibility:none;
 }
 
-form{
+span{
+	border: 1px dashed black;
+	padding:2px;
+}
+
+.ui-state-default{
 	border: 1px solid black;
 }
 
+=======
+>>>>>>> parent of 4dc97a3... Sortable + new questions
 /* canvas styling */
 canvas{
 	border:1px solid #000000;
 	z-index:-99;
-	width:100%;
 }
 
 /* images in checkbox/radio button questions */

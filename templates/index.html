@@ -1,40 +1,71 @@
 <doctype !html>
 <html>
 <head>
-<script type='text/javascript' src='{{ url_for('static', filename='jquery.js')}}'></script>
+<script type='text/javascript' src="{{ url_for('static', filename='jquery.js')}}"></script>
 <script type='text/javascript'>
 var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 </script>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='my_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build.css')}}">
+<script type="text/javascript" src="{{ url_for('static', filename='jquery-ui-custom.js')}}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='builder.js')}}"></script>
+
 <!-- insert title here --><title>Headaches</title></head>
 <body>
 <div class="container">
 <!-- this is a comment. This container contains everything you write-->
+
+<<<<<<< HEAD
+<h1 class='clickfield'><span>Form Title Here</span><input type='text' class='title' hidden/></h1>
+<p class='clickfield'><span>Form description here.</span><input type='text' class='description' hidden/></p>
 
 <div class='col-md-8'>
 	
 		<button id="newq">New Question</button>
 </div>
 
-<div id='questions'>
-	<div class='ui-state-default'>
-		<form class='builder template hidden' method='post' enctype="multipart/form-data" id='builder-0'>	
+<ul id='questions'>
+	<li class='ui-state-default'>
+		<form class='col-md-12 builder template hidden' method='post' enctype="multipart/form-data" id='builder-0'>	
 
 	<!-- new question -->
 	<div class="question-template template question col-md-12">
-		<h3 class="col-md-12 header clickfield"><span class='number'>#. </span><span>Question Text Here</span><input type='text' class='header'/></h3>
+		<h3 class="col-md-12 header clickfield"><span>Question Text Here</span><input type='text' class='header'/></h3>
 		<div class='radio col-md-8'>
 			<label class='type'>Type:</label>
 			<br>
 			<div class="radio answer col-md-8"><label><input type='radio' value='radio' class='show-rad select' name='type'>Radio</label></div>
 			<div class='radio answer col-md-8'><label><input type='radio' value='checkbox' class='show-chk select' name='type'>Checkbox</label></div>
+			<div class="radio answer col-md-8"><label><input type='radio' value='textarea' class='show-text select' name='type'>Textarea</label></div>
 			<div class="radio answer col-md-8"><label><input type='radio' value='diagram' class='show-diag select' name='type'>Diagram</label></div>
+=======
 
 
-			<div class='radio-template template col-md-12 hidden'>
-				<label>Pre-answer phrase:</label><input name='name' />
+<div class="row col-md-8">
+	<form id='builder' method='post' enctype="multipart/form-data">
+	<div class='questions col-md-12'>
+	STUFF
+	</div>
+	<div class='col-md-8'>
+	
+		<button id="newq">New Question</button>
+	</div>
+
+	<!-- new question -->
+	<div class="question-template template question col-md-12">
+		<h3 class="col-md-12 header clickfield"><span>Sample Header</span><input type='text' class='header'/></h3>
+		<div class='radio col-md-8'>
+			<label class='type'>Type:</label>
+			<br>
+			<div class="radio answer col-md-8"><label><input type='radio' value='radio' name='type'>Radio</label></div>
+			<div class='radio answer col-md-8'><label><input type='radio' value='checkbox' name='type'>Checkbox</label></div>
+			<div class="radio answer col-md-8"><label><input type='radio' value='diagram' name='type'>Diagram</label></div>
+>>>>>>> parent of 4dc97a3... Sortable + new questions
+
+
+			<div class='radio-template template col-md-12'>
+				<label>Name:</label><input name='name' />
 				<div class="radio answer collection">
 					<div class='body'>
 					<div class='group'>
@@ -66,8 +97,8 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				</div>
 			</div>
 
-			<div class='checkbox-template template col-md-12 hidden'>
-				<label>Pre-answer Phrase:<input name='name' /></label>
+			<div class='checkbox-template template col-md-12'>
+				<label>Name:<input name='name' /></label>
 				<div class="checkbox answer collection">
 					
 					<div class='body'>
@@ -99,46 +130,47 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 					</div>
 				</div>
 			</div>
-
+<<<<<<< HEAD
+			
+			<div class='textarea-template template col-md-12 hidden'>
+			
+				<label>Pre-answer phrase:<input name='name' /></label><br>
+				<textarea name="textarea" width='100%'></textarea>
+			</div>
+			
 			<div class='diagram-template template col-md-12 hidden'>
 				<input class="file" type="file" name="the_file[]" multiple>
 				<label>Pre-answer phrase:<input name='name' /></label>
+=======
+
+			<div class='diagram-template template col-md-12'>
+				<input id="file" type="file" name="the_file[]" multiple>
+				<label>Name:<input name='name' /></label>
+>>>>>>> parent of 4dc97a3... Sortable + new questions
 				<div class="diagram answer">
 				<label>Value:<input name='value'/></label>
 				<div>
 				<figure class='diagram'>
-				<canvas class='myCanvas' width='200px' height='auto'></canvas>
+				<canvas id='myCanvas' width='100%' height='auto'></canvas>
 				</figure>
 				</div>
-				<button type='button' class='diagram-upload'>Upload photo</button>
+				<button type='button' id='diagram-upload'>Submit</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	</form>
-	</div>
+<<<<<<< HEAD
+	</li>
+</ul>
+=======
 </div>
+>>>>>>> parent of 4dc97a3... Sortable + new questions
 </div>
 <!-- Scripts go here to increase speed load time -->
 
-<script type='text/javascript' src="{{ url_for('static', filename='bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='builder.js')}}"></script>
-<script src="{{ url_for('static', filename='js/vendor/jquery.ui.widget.js')}}"></script>
-<script type='text/javascript' src='http://code.jquery.com/ui/1.10.4/jquery-ui.js'></script>
-<script src="{{ url_for('static', filename='js/jquery.iframe-transport.js')}}"></script>
-<script src="{{ url_for('static', filename='js/jquery.fileupload.js')}}"></script>
-<script>
-$(function () {
-    $('#fileupload').fileupload({
-        dataType: 'json',
-        done: function (e, data) {
-            $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo(document.body);
-            });
-        }
-    });
-});
-</script>
 </body>
+
+
 </html>
 
