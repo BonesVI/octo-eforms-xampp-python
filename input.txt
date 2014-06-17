@@ -1,38 +1,9 @@
-Headaches -- TITLE
-Headache Form -- FORM HEADER
-Below are questions that you should answer regarding your headache. -- DESCRIPTION
-On a scale of 1 to 10, how much pain do you feel? -- QUESTIONS BEGIN
-radio -- TYPE
-1, 1 - No pain IMG:diagram.pngNUM:2HEIGHT:100 -- VALUE, WORDS, IMG:SRC NUM:?? HEIGHT: height in px
-2, 2 - Some -- VALUE, WORDS
-3, 3 - Your mom
-4, Etc
-end -- END OF QUESTION
-What are you feeling right now? -- QUESTION
-textarea -- TYPE
-5, Enter a description of the pain -- VALUE (not used), TIP
-end -- END
-Where is it on your skull? -- QUESTION
-diagram -- DIAGRAM
-Human_skull_diagram.jpg -- IMG
-very back of skull, 380, 270 -- VALUE, x, y
-jaw, 150, 330
-upper jaw, 250, 250
-temple, 150, 230
-back skull, 300, 125
-top left, 150, 100
-end -- END
-Which of the following apply?
-checkbox
-asdfas, part 1
-asldkfjals, part 2
-jaksdflj, part3
-askldjfl, part 4
+Form Title Here
+Form Title Here
+Form description here.
+Question Text Here
+radio
+, 
+end
 endquestions
-PHRASE 1 -- DIFFERENT PHRASES
-PHRASE 1
-PHRASE 1
-PHRASE 1
-PHRASE 1
-PHRASE 1
-PHRASE 1
+

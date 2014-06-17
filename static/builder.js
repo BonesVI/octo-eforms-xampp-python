@@ -58,7 +58,72 @@ $(document).ready(function(){
 		var num = id.substring(8, id.length);
 		return num;
 	};
-	
+	$('#submit').click(function(){
+		var line = [];
+		var pre = [];
+		line.push($('#title').text());
+		line.push($('#title').text());
+		line.push($('#description').text());
+		$('form').each(function(index){
+			if($(this).is(':visible')){
+				line.push($(this).find('.header span').html());
+				var type = $(this).find("input[name='type']:checked").val();
+				pre.push($(this).find('.' + type + "-template input[name='name']").val());
+				line.push(type);
+				if(type == 'radio' || type == 'checkbox')
+				{
+					$(this).find('.' + type + '-template .coolio').each(function(){
+						var string = $(this).find('.second input').val() + ', ' + $(this).find('.first span').text();
+						if($(this).find('.third input').val() != '')
+						{
+							string = string + 'IMG:' + $(this).find('.third input').val() + 'NUM:2HEIGHT:100';
+						}
+						line.push(string);
+					});
+				}
+				else if(type == 'textarea')
+				{
+					line.push('5, ' + $(this).find('textarea').val());
+				}
+				else if(type == 'diagram')
+				{
+					line.push($(this).find(".diagram-template .file").val().replace('C:\\fakepath\\', ''));
+					$(this).find('.sidebar .clickfield').each(function(){
+						if($(this).is(':visible')){
+							var ur_mom = $(this).find('.value').html();
+							ur_mom = ur_mom + ', ' + $(this).find('.position').html();
+							line.push(ur_mom);
+						}
+					});
+				}
+				else
+				{
+					$(this).css('border', '1px solid red');
+					$(this).append('Select a type!');
+				}
+				line.push('end');
+			}
+		});
+		line.push('endquestions');
+		for(var i = 0; i < pre.length; i++)
+		{
+			line.push(pre[i]);
+		}
+		var pieces = '';
+		for(var i = 0; i < line.length; i++)
+		{
+			pieces = pieces + line[i] + '\n';
+		}
+		alert(pieces);
+		$.ajax({
+			type: 'POST',
+			url: '/submit',
+			data: {message:pieces},
+			success: function(){
+				console.log('File submitted');
+			}
+		});
+	});
 	$('#newq').click(function(){
 		var clone = $('.builder.template').closest('.ui-state-default').clone();
 		$('#questions').append(clone);
@@ -73,7 +138,7 @@ $(document).ready(function(){
 		if (confirm('Are you sure you want to delete this?'))
 		{
 			var row = $(this).closest('.group');
-			row.hide();
+			row.remove();
 		}
 		return false;
 	}
@@ -111,7 +176,7 @@ $(document).ready(function(){
 	$('.add-answer').click(function(){
 		var answer = $(this).closest('.collection').find('.hidden');
 		var field = answer.closest('.body');
-		var clone = answer.clone().attr('class', 'group');
+		var clone = answer.clone().removeClass('hidden');
 		field.append(clone);
 		clone.find('.clickfield').bind('click', clickme);
 		jQuery.data(clone.closest('.group'), 'row', row_count);
@@ -165,7 +230,9 @@ $(document).ready(function(){
 					var check = $(this);
 					input.blur(function(){
 						check.val($(this).val());
-						check.closest('figure').find('.sidebar .' + check.attr('class') + ' .value').html($(this).val());
+						part = check.closest('figure').find('.sidebar .' + check.attr('class'));
+						part.find('.value').html($(this).val());
+						part.find('.position').html(check.css('left').replace('px', '') + ', ' + check.css('top').replace('px', ''));
 						$(this).remove();
 						return false;
 					});
@@ -204,6 +271,10 @@ $(document).ready(function(){
 		var form = $('#builder-'+id);
 		form.find('input.select').bind('click', function(){
 			$('input[name="' + $(this).attr('name') + '"]').not($(this)).trigger('change');
+		});
+		form.find('.delete-form').click(function(){
+			form.remove();
+			return false;
 		});
 		form.find('.show-rad').change(function(){
 			if($(this).is(':checked'))
@@ -277,7 +348,7 @@ $(document).ready(function(){
 			var answer = $(this).closest('.collection').find('.hidden');
 			var field = answer.closest('.body');
 			var clone = answer.clone();
-			clone.attr('class', 'group');
+			clone.attr('class', 'group coolio');
 			field.append(clone.first());
 			clone.find('.clickfield').bind('click', clickme);
 			clone.find('.remove').click(remove);

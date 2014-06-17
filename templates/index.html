@@ -11,23 +11,20 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 <script type="text/javascript" src="{{ url_for('static', filename='jquery-ui-custom.js')}}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='builder.js')}}"></script>
 
-<!-- insert title here --><title>Headaches</title></head>
+<!-- insert title here --><title>Form Builder</title></head>
 <body>
 <div class="container">
 <!-- this is a comment. This container contains everything you write-->
 
-<h1 class='clickfield'><span>Form Title Here</span><input type='text' class='title' hidden/></h1>
-<p class='clickfield'><span>Form description here.</span><input type='text' class='description' hidden/></p>
+<h1 class='clickfield'><span id='title'>Form Title Here</span><input type='text' class='title' hidden/></h1>
+<p class='clickfield'><span id='description'>Form description here.</span><input type='text' class='description' hidden/></p>
 
-<div class='col-md-8'>
-	
-		<button id="newq">New Question</button>
-</div>
+
 
 <div id='questions'>
 	<div class='ui-state-default col-md-12'>
 		<form class='builder template hidden' method='post' enctype="multipart/form-data" id='builder-0'>	
-
+		<button class='delete-form'>DELETE</button>
 	<!-- new question -->
 	<div class="question-template template question col-md-12">
 		<h3 class="col-md-12 header clickfield"><span>Question Text Here</span><input type='text' class='header'/></h3>
@@ -43,7 +40,7 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				<label>Name:</label><input name='name' />
 				<div class="radio answer collection">
 					<div class='body'>
-					<div class='group'>
+					<div class='group '>
 						<div class='cell first'>
 							Answers
 						</div>
@@ -123,7 +120,7 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 				<canvas class='myCanvas' height='auto'></canvas>
 				<div class='sidebar'>
 				<div class='template check-0 hidden clickfield' >
-					<input type='checkbox' /><span class='value'>VALUE</span><input type='text' hidden /><button class='remove-check'>-</button>
+					<input type='checkbox' /><span class='value'>VALUE</span><div class='position'>POS</div><input type='text' hidden /><button class='remove-check'>-</button>
 				</div>
 				</div>
 				</figure>
@@ -136,6 +133,10 @@ var SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 	</div>
 	</form>
 	</div>
+</div>
+<div class='col-md-8'>
+	<button id="newq">New Question</button>
+	<button id='submit'>Submit</button>
 </div>
 <!-- Scripts go here to increase speed load time -->
 
