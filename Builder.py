@@ -41,7 +41,7 @@ class Option:
             size = int(12 / int(pieces[2]))
             string = "{0}<br/><img src='{1}' class='col-md-{2}' height='{3}px'>".format(pieces[0], pieces[1],size,  pieces[3])
             debug("---IMAGE LOCATION---\n{0}".format(pieces[1]))
-            shutil.copyfile(pieces[1], name + '\\' + pieces[1])
+            shutil.copyfile(pieces[1], os.path.join(name, pieces[1]))
             self.text = string
                     
                 
@@ -105,7 +105,7 @@ class Question:
         for opt in self.options:
             string += opt.string()
             if opt.name != '':
-                shutil.copyfile(self.picture, name + '\\' + self.picture)
+                shutil.copyfile(self.picture, os.path.join(name, self.picture))
                 debug("----- PICTURE COPY SUCCESSFUL -----")
 
         if self.style == "diagram":
@@ -133,10 +133,9 @@ def create_new_page():
 
 			 
 	debug("------ CURRENT WORKING DIRECTORY -----\n" + os.getcwd())
-	debug("------ FILES IN DIRECTORY -----\n" + ''.join(os.listdir()))
+	debug("------ FILES IN DIRECTORY -----\n" + ''.join(os.listdir('.')))
 
-	copy_files = ['bootstrap.min.css',
-				  'bootstrap.min.js',
+	copy_files = [
 				  'template.css',
 				  'my_styles.css'];
 
@@ -161,12 +160,14 @@ def create_new_page():
 	header = finput.readline()[:-1]
 	explanation = finput.readline()[:-1]
 
-	if not os.path.exists(name + '\\'):
-		os.makedirs(name + r'\\')
+	try:
+		os.makedirs(name)
+	except OSError:
+		debug('Directory already exists: ' + name)
 
 	# get all the copiable files
 	for file in copy_files:
-		shutil.copyfile(file, name+'\\'+file)
+		shutil.copyfile(file, os.path.join(name, file))
 
 
 	debug("----- NAME -----\n" + name
@@ -175,7 +176,7 @@ def create_new_page():
 
 
 	# output file for the final product
-	foutput = open(name + '\\'+ "index.html", 'w')
+	foutput = open(os.path.join(name, "index.html"), 'w')
 	debug("----- OPENED NEW FORM -----")
 
 	#next section of file will be questions

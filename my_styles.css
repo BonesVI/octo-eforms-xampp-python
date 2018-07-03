@@ -1,0 +1,43 @@
+html body
+{
+	z-index:-1000;
+}
+.template{
+	visibility:none;
+}
+
+span{
+	border: 1px dashed black;
+	padding:2px;
+}
+
+.ui-state-default{
+	border: 1px solid black;
+}
+
+/* canvas styling */
+canvas{
+	border:1px solid #000000;
+	z-index:-99;
+	width:65%;
+	
+}
+.sidebar{
+	width:30%;
+	float:right;
+	height:auto;
+}
+
+
+/* images in checkbox/radio button questions */
+div.checkbox-image label{
+	position:absolute;
+	left:40%;
+	top:100%;
+	font-size:0.9em;
+}
+
+div.checkbox-image{
+	margin-bottom:1%;
+
+}

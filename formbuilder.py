@@ -21,7 +21,7 @@ def upload_file():
 		if file:
 			for f in file:
 				filename = f.filename
-				f.save('img\\' + filename)
+				f.save(os.path.join('img', filename))
 			return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
@@ -36,14 +36,8 @@ def submit():
 @app.route('/img')
 def get_image():
 	name = request.args.get('name')
-	filename = 'img\\' + name;
+	filename = os.path.join('img', name)
 	return send_file(filename, mimetype='image/gif')
 		
 if __name__ == '__main__':
-    app.run(debug=True)
-
-    
-    
-
-
-
+    app.run(host='0.0.0.0', debug=True)
