@@ -3,7 +3,7 @@ from os.path import *
 import shutil
 import re
 
-deb = 0 # debug variable. if 1, then will debug values given
+deb = 1 # debug variable. if 1, then will debug values given
 fdeb = open("debug.txt", 'w') # debug file where output goes
 
 # debug function takes a value and writes it to a debug file
@@ -39,7 +39,7 @@ class Option:
                 if val:
                     pieces.append(val.group(1))
             size = int(12 / int(pieces[2]))
-            string = "{0}<br/><img src='{1}' class='col-md-{2}' height='{3}px'>".format(pieces[0], pieces[1],size,  pieces[3])
+            string = "{0}<br/><img src='{1}' height='{3}px'>".format(pieces[0], pieces[1], pieces[3])
             debug("---IMAGE LOCATION---\n{0}".format(pieces[1]))
             shutil.copyfile(pieces[1], os.path.join(name, pieces[1]))
             self.text = string
@@ -61,7 +61,7 @@ class Option:
         elif self.style == "textarea":
             string = "<textarea class=\"form-control\" rows=\"{1}\" name=\"{0}\">{2}</textarea>\n".format(self.owner, self.value, self.text)
         else:
-            string = "<div class=\"{0} answer col-md-8\"><label><input type=\"{0}\" name=\"{1}\" value=\"{2}\">{3}</label></div>\n".format(self.style, self.owner, self.value, self.text)
+            string = "<div class=\"{0} answer\"><label><input type=\"{0}\" name=\"{1}\" value=\"{2}\">{3}</label></div>\n".format(self.style, self.owner, self.value, self.text)
 
         return string
     
@@ -97,7 +97,7 @@ class Question:
                 del opt
 
     def string(self):
-        string = "<!-- {0} question --><div class=\"{0} question col-md-12\"><h3 class=\"col-md-12\">{1}</h3><div class=\"{0} col-md-8\">\n".format(self.style, self.question)
+        string = "<!-- {0} question --><div class=\"{0} question\"><h3>{1}</h3><div class=\"{0}\">\n".format(self.style, self.question)
         if self.style == "diagram":
             string += "<figure class=\"diagram\"><img src=\"{0}\" width=\"100%\">\n".format(self.picture);
 
@@ -105,7 +105,7 @@ class Question:
         for opt in self.options:
             string += opt.string()
             if opt.name != '':
-                shutil.copyfile(self.picture, os.path.join(name, self.picture))
+                shutil.copyfile(self.picture, os.path.join(opt.name, self.picture))
                 debug("----- PICTURE COPY SUCCESSFUL -----")
 
         if self.style == "diagram":
@@ -237,7 +237,8 @@ def create_new_page():
 			for opt in options:
 				debug(opt + ", " + str(len(opt)))
 		else:
-			q = Question(qset[0], qset[1], qset[2])
+                        debug("----- PWD {} -------".format(os.getcwd())
+			q = Question(qset[0], qset[1], os.path.join('../img', qset[2]))
 			debug("----- DIAGRAM -----")
 			options = qset[3:]
 
@@ -250,6 +251,7 @@ def create_new_page():
 			
 			values = parse_option(opt)
 			debug("Number of options: " + str(len(values)))
+                        debug("Option: " + str(values))
 			if(len(values) > 2):
 				debug("MORE OPTIONS")
 				q.add_option(values[0], values[1], values[2], name)

@@ -1,31 +1,22 @@
 	</div>
 
 <div class="row patient-info">
-<label class="col-md-8 date" >
+<label class="date" >
 Date: <%date goes here%>
 </label>
 
-<label class="col-md-8 name" >
+<label class="name" >
 Name: <%name goes here%>
 </label>
-<label class="col-md-8 address" >
+<label class="address" >
 Address: <%address goes here%>
 </label>
-<label class="col-md-8 dob" >
+<label class="dob" >
 Date of Birth: <%dob goes here%>
-</label>
-<label class="col-md-8 info" >
-info: <%info goes here%>
-</label>
-<label class="col-md-8 info" >
-info: <%info goes here%>
-</label>
-<label class="col-md-8 info" >
-info: <%info goes here%>
 </label>
 </div>
 
-	<div class="row col-md-8">
+<div class="row">
 <form id='eForm' action='#' method='post'>
 <!-- questions and everything goes here. Remember to change the question number
 in the <name> attributes -->

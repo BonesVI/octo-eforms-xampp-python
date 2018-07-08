@@ -121,6 +121,8 @@ $(document).ready(function(){
 			data: {message:pieces},
 			success: function(){
 				console.log('File submitted');
+				alert('Submission successful. Page will now refresh');
+				location.reload();
 			}
 		});
 	});

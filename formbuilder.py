@@ -16,6 +16,10 @@ def test():
 	
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
+        try:
+            os.makedirs('img')
+        except OSError:
+            debug('img directory exists already')
 	if request.method == 'POST':
 		file = request.files.getlist('the_file[]')
 		if file:
